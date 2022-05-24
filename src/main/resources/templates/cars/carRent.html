@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Оренда авто</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<div class="container">
+    <header th:insert = "components/header :: header"></header>
+    <div class="d-flex justify-content-between">
+        <h2 class="p-2" th:text="'Орендувати Автo '"></h2>
+        <div class="p-2">
+            <a href="/" class="btn btn-outline-secondary">< Назад</a>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+
+        </div>
+            <hr class="hr-dark my-4">
+        <div class="row">
+            <div class="col xs-6">
+                <div class="container mt-5 mb-2">
+                    <h3 type="text" name="car_model" th:text="${id} + ' ' + ${car_brand} + ' ' + ${car_model}"></h3><br>
+                    <form action="/car-park/rent/" method="post" class="form-outline col-md-15">
+                        <input type="text" name="car" th:value="${car_model}">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mt-3">
+                                    <h5> Час оренди:</h5>
+                                    <select name="time" class="form-select" required>
+                                        <option value="1day" >1 день</option>
+                                        <option value="7days" >7 днів</option>
+                                        <option value="30days" >30 днів</option>
+                                    </select>
+                                </div>
+                                <div class="mt-3">
+                                    <h5> Локація:</h5>
+                                    <select class="form-select" name="location" required>
+                                        <option>Оберіть локацію</option>
+                                        <option value="Київ">Київ</option>
+                                        <option value="Львів">Львів</option>
+                                        <option value="Одесса">Одесса</option>
+                                        <option value="Харків">Харків</option>
+                                        <option value="Чернівці">Чернівці</option>
+                                        <option value="Вінниця">Вінниця</option>
+                                        <option value="Тернопіль">Тернопіль</option>
+                                        <option value="Дніпро">Дніпро</option>
+                                    </select>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <label>Дата видачі<input type="date" name="created_at" placeholder="Дата видачі" class="form-control" required></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Дата здачі<input type="date" name="expire_date" placeholder="Дата повернення" class="form-control" required></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <div class="row mt-3">
+                                    <h5 class="card-text">Ваші дані</h5>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <input type="text" name="firstname" placeholder="Ім'я" class="form-control" required><br>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" name="lastname" placeholder="Прізвище" class="form-control " required><br>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" name="age" placeholder="Вік" class="form-control " required><br>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" name="phone_number" placeholder="Номер телефону" class="form-control " required><br>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" name="passport_data" placeholder="Паспортні дані" class="form-control " required<br>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" name="driver_exp" placeholder="Стаж" class="form-control " required><br>
+<!--                                        <input type="text" th:each="el : ${carModel}" name="carModel" th:value="${el.cars.car_model} + ' ' + ${cars.car_brand}" class="form-control"><br>-->
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <h5> cost:</h5>
+                                    <select name="cost" class="form-select" required>
+                                        <option value="50" >50</option>
+                                        <option value="250" >250</option>
+                                        <option value="1500" >1500</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success">Підтрвердити</button>
+<!--                        <div class="row" th:if="${time == '1day'}">-->
+<!--                                <h1 th:name="${one_day}" th:text="${one_day}"></h1>-->
+<!--                        </div>-->
+<!--                        <div class="row" th:if="${time == '7days'}">-->
+<!--                            <h1 th:name="${seven_days}" th:text="${seven_days}"></h1>-->
+<!--                        </div>-->
+<!--                        <div class="row" th:if="${time == '30days'}">-->
+<!--                            <h1 th:name="${thirty_days}" th:text="${thirthy_days}"></h1>-->
+<!--                        </div>-->
+                    </form>
+                </div>
+            </div>
+        </div>
+            <hr class="hr-dark my-4">
+        <div>
+
+        </div>
+    </div>
+
+    <footer th:insert = "components/footer :: footer"></footer>
+</div>
+</body>
+</html>

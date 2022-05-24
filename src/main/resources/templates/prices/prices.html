@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ціни</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<div class="container">
+    <header th:insert = "components/header :: header"></header>
+    <h2>Ціни на оренду</h2>
+
+
+
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Авто</th>
+                <th scope="col">30+ днів</th>
+                <th scope="col">3-7 днів</th>
+                <th scope="col">1-2 дні</th>
+                <th scope="col">*</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="element : ${prices}">
+                <th scope="row" th:text="${element.id}"></th>
+                <td th:text="${element.price_carModel}"></td>
+                <td th:text="${element.thirty_days}"></td>
+                <td th:text="${element.seven_days}"></td>
+                <td th:text="${element.one_day}"></td>
+                <td><a href="/car-park" class="btn btn-warning">Орендувати</a> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer th:insert = "components/footer :: footer"></footer>
+</div>
+</body>
+</html>
