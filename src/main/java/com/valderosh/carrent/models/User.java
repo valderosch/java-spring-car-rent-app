@@ -15,6 +15,10 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String username;
+    private String password;
+    private boolean active;
+
     public Long getId() {
         return id;
     }
@@ -80,9 +84,6 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    private String username;
-    private String password;
-    private boolean active;
 
     @ElementCollection(targetClass = Roles.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))

@@ -39,7 +39,7 @@
             <tbody>
             <tr th:each="element : ${prices}">
                 <th scope="row" th:text="${element.id}"></th>
-                <td th:text="${element.price_carModel}"></td>
+                <td th:text="${element.cars.brand} + ' ' + ${element.cars.mark}"></td>
                 <td th:text="${element.thirty_days}"></td>
                 <td th:text="${element.seven_days}"></td>
                 <td th:text="${element.one_day}"></td>

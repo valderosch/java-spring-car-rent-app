@@ -17,56 +17,61 @@
                     <div class="card mb-2 mt-2 border-secondary">
                         <div class="container my-2">
                             <h5>Основні характеристики</h5>
-                            <input type="text" name="car_image" placeholder="Фотографія" class="form-control"><br>
-                            <input type="text" name="car_brand" placeholder="Марка" class="form-control"><br>
-                            <input type="text" name="car_model" placeholder="Модель" class="form-control"><br>
-                            <input type="text" name="car_colour" placeholder="Колір" class="form-control"><br>
+                            <input type="text" name="image" placeholder="Фотографія" class="form-control"><br>
+                            <input type="text" name="brand" placeholder="Марка" class="form-control"><br>
+                            <input type="text" name="mark" placeholder="Модель" class="form-control"><br>
+                            <input type="text" name="colour" placeholder="Колір" class="form-control"><br>
                         </div>
                     </div>
                     <div class="card mb-2 mt-2 border-secondary">
                         <div class="container my-2">
                             <h5>Технічні характеристики</h5>
                             <p class="text-muted mt-5">Привід</p>
-                            <select name="car_drive_opt" class="form-select">
+                            <select name="drive_opt" class="form-select">
                                 <option value="Задній">Задній (RWD)</option>
-                                <option value="Передній">Передній    (FWD)</option>
+                                <option value="Передній">Передній (FWD)</option>
                                 <option value="Повний">Повний (AWD)</option>
                             </select>
                             <p class="text-muted mt-5">Тип палива</p>
-                            <select name="car_fuel" class="form-select">
+                            <select name="fuel" class="form-select">
                                 <option value="Бензин">Бензин</option>
                                 <option value="Дизель">Дизель</option>
                                 <option value="Електро">Електро</option>
                             </select>
                             <p class="text-muted mt-5">Тип трансмсії (КПП)</p>
-                            <select name="car_transmission" class="form-select">
+                            <select name="transmission" class="form-select">
                                 <option value="Ручна">Ручна</option>
                                 <option value="Автомат">Автомат</option>
                                 <option value="Робот">Робот</option>
                             </select>
                             <p class="text-muted mt-5">Потужність</p>
-                            <input type="text" name="car_power" placeholder="Потужність двигуна" class="form-control"><br>
+                            <input type="text" name="power" placeholder="Потужність двигуна" class="form-control"><br>
                         </div>
                     </div>
                     <div class="card mb-2 mt-2 border-secondary">
                         <div class="container my-2" >
                             <h5 class="card-text mb-2">Інші характеристики</h5>
-                            <p class="text-muted mt-5">Сегмент</p>
-                            <select name="car_segment" class="form-select">
+                            <p class="text-muted mt-3">Сегмент</p>
+                            <select name="segment" class="form-select">
                                 <option value="Економ">Економ</option>
                                 <option value="Стандарт">Стандарт</option>
                                 <option value="Люкс">Люкс</option>
                                 <option value="Преміум">Преміум</option>
                                 <option value="Спеціальний">Спеціальний</option>
                             </select>
-                            <p class="text-muted mt-5">Поточний статус</p>
-                            <select name="car_status" class="form-select">
+                            <p class="text-muted mt-3">Поточний статус</p>
+                            <select name="status" class="form-select">
                                 <option value="Вільна">Вільна</option>
                                 <option value="Зайнята">Зайнята</option>
                                 <option value="В Ремонті">В Ремонті</option>
                             </select>
-                            <p class="text-muted mt-5">Мінімальна вартість</p>
-                            <input type="text" name="min_value_per_hour" placeholder="Мінімальна вартість за годину" class="form-control"><br>
+                            <p class="text-muted mt-3">Номер</p>
+                            <input name="number" placeholder="Автономер" class="form-control">
+                            <p class="text-muted mt-3">Місцезнаходження авто</p>
+                            <select name="location" class="form-select">
+                                <option th:each="park : ${parking}" th:value="${park.id}"  th:text="${park.location}"></option>
+                            </select>
+<!--                            <input type="hidden" name="prices" th:value="${cars.id}" class="form-control">-->
                         </div>
                     </div>
                     <button type="submit" class="btn btn-success mt-2">Створити</button>

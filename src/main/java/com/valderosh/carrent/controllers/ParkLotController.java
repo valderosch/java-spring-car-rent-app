@@ -36,17 +36,13 @@ public class ParkLotController {
 
     @GetMapping("/parking/add")
     public String parkingAddPage(Model model) {
-        Iterable<Cars> cars = carsRepository.findAll();
-        model.addAttribute("cars", cars);
+
         return "parking/parkAdd";
     }
 
     @PostMapping("/parking/add")
-    public String parkingPostAdd(@RequestParam String location, @RequestParam String autos ,@RequestParam(required = false)  String avaliable, @RequestParam(required = false) String unavaliable, @RequestParam int number_of_cars, Model model){
-//         @RequestParam(value = "selected", required = false) String selected,
-//        String[] stringArray = selected.split(",");
-//        List<String> autos = Arrays.asList(stringArray);
-        ParkLot parking = new ParkLot(location, autos, avaliable, unavaliable, number_of_cars );
+    public String parkingPostAdd(@RequestParam String phoneNumber, @RequestParam String location, Model model){
+        ParkLot parking = new ParkLot(phoneNumber, location);
         parkLotRepository.save(parking);
         return "redirect:/parking";
     }
@@ -61,20 +57,15 @@ public class ParkLotController {
         Optional<ParkLot> park = parkLotRepository.findById(id);
         ArrayList<ParkLot> res = new ArrayList<>();
         park.ifPresent(res::add);
-        Iterable<Cars> cars = carsRepository.findAll();
-        model.addAttribute("cars", cars);
         model.addAttribute("parking", res);
         return "parking/parkEdit";
     }
 
     @PostMapping("/parking/{id}/edit")
-    public String parkUpdate( @PathVariable(value = "id") long id, @RequestParam String location, @RequestParam String autos ,@RequestParam(required = false)  String avaliable, @RequestParam(required = false) String unavaliable, @RequestParam int number_of_cars, Model model){
+    public String parkUpdate( @PathVariable(value = "id") long id, @RequestParam String phoneNumber, @RequestParam String location, Model model){
         ParkLot park = parkLotRepository.findById(id).orElseThrow();
+        park.setPhoneNumber(phoneNumber);
         park.setLocation(location);
-        park.setAutos(autos);
-        park.setAvaliable(avaliable);
-        park.setUnavaliable(unavaliable);
-        park.setNumber_of_cars(number_of_cars);
         parkLotRepository.save(park);
         return "redirect:/parking";
     }

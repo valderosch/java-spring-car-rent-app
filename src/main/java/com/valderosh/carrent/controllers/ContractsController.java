@@ -51,7 +51,7 @@ public class ContractsController {
 
 
 
-    @GetMapping("/car-park/rent/{id}")
+    @GetMapping("/car-park/details/{id}/rent")
     public String carRentPage(@PathVariable(value = "id") long id, Model model)
     {
         if(!carsRepository.existsById(id)){
@@ -60,18 +60,17 @@ public class ContractsController {
         Optional<Cars> car = carsRepository.findById(id);
         ArrayList<Cars> res = new ArrayList<>();
         car.ifPresent(res::add);
-        model.addAttribute("cars", res);
-        Iterable<Prices> prices = pricesRepository.findAll();
-        model.addAttribute("prices", prices);
-        Iterable<Contracts> ctr= contractsRepository.findAll();
-        model.addAttribute("contract", ctr);
+        model.addAttribute("car", res);
+//        Iterable<Prices> prices = pricesRepository.findAll();
+//        model.addAttribute("prices", prices);
+//        Iterable<Contracts> ctr= contractsRepository.findAll();
+//        model.addAttribute("contract", ctr);
         return "cars/carRent";
     }
 
-    @PostMapping("/car-park/rent")
-    public String newRentRequest(@AuthenticationPrincipal User user,
-                              @RequestParam String location,
-                              @RequestParam String car,
+    @PostMapping("/car-park/details/{id}/rent")
+    public String newRentRequest(@PathVariable(value = "id") long id, @AuthenticationPrincipal User user,
+                              @RequestParam Cars car,
                               @RequestParam String firstname,
                               @RequestParam String lastname,
                               @RequestParam String phone_number,
@@ -83,17 +82,28 @@ public class ContractsController {
                               @RequestParam Date created_at,
                               @RequestParam Date expire_date
             ,Model model) {
-        Contracts contract = new Contracts(user, location, car, firstname, lastname, phone_number, passport_data, age, driver_exp, time, cost, created_at, expire_date);
+        Contracts contract = new Contracts(user, car, firstname, lastname, phone_number, passport_data, age, driver_exp, time, cost, created_at, expire_date);
         contractsRepository.save(contract);
-        return "redirect:/newContract";
+        return "redirect:/newContract/" + contract.getId();
     }
 
 
-    @GetMapping("/newContract")
-    public String newContractPage(Model model) {
-        Iterable<Contracts> contracts = contractsRepository.findAll();
-        model.addAttribute("contracts", contracts);
+    @GetMapping("/newContract/{contract}")
+    public String newContractPage(@PathVariable(value = "contract") long id, Model model) {
+        Optional<Contracts> ctr = contractsRepository.findById(id);
+        ArrayList<Contracts> res = new ArrayList<>();
+        ctr.ifPresent(res::add);
+        model.addAttribute("contract", res);
         return "contracts/newContract";
+    }
+
+    @GetMapping("/newContract/{id}/get-car")
+    public String getCarPage(@PathVariable(value = "id") long id, Model model) {
+        Optional<Contracts> ctr = contractsRepository.findById(id);
+        ArrayList<Contracts> res = new ArrayList<>();
+        ctr.ifPresent(res::add);
+        model.addAttribute("contract", res);
+        return "contracts/getCar";
     }
 
 

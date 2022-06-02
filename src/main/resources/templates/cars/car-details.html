@@ -21,30 +21,30 @@
     <div class="card mb-3" th:each="element : ${cars}">
         <div class="row g-0">
             <div class="col-md-4">
-                <img th:src="${element.car_image}" class="img-fluid rounded-start" alt="...">
+                <img th:src="${element.image}" class="img-fluid rounded-start" alt="...">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h4 class="card-title mb-2" th:text="${element.car_brand} + ' ' + ${element.car_model}"></h4>
+                    <h4 class="card-title mb-2" th:text="${element.brand} + ' ' + ${element.mark}"></h4>
                     <div class="row mb-2 mt-2">
                         <div class="col-sm-3">
                             <div class="card border-secondary">
                                 <div class="card-body">
-                                    <p class="card-text text-muted" th:text="'Потужність: ' + ${element.car_power} + ' к.с.'"></p>
+                                    <p class="card-text text-muted" th:text="'Потужність: ' + ${element.power} + ' к.с.'"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="card border-secondary">
                                 <div class="card-body">
-                                    <p class="card-text text-muted" th:text="'Привід: ' + ${element.car_drive_opt}"></p>
+                                    <p class="card-text text-muted" th:text="'Привід: ' + ${element.drive_opt}"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="card border-secondary">
                                 <div class="card-body">
-                                    <p class="card-text text-muted" th:text="'Паливо: ' + ${element.car_fuel}"></p>
+                                    <p class="card-text text-muted" th:text="'Паливо: ' + ${element.fuel}"></p>
                                 </div>
                             </div>
                         </div>
@@ -54,21 +54,21 @@
                         <div class="col-sm-3">
                             <div class="card border-secondary">
                                 <div class="card-body">
-                                    <p class="card-text text-muted" th:text="'Сегмент: ' + ${element.car_segment}"></p>
+                                    <p class="card-text text-muted" th:text="'Сегмент: ' + ${element.segment}"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="card border-secondary">
                                 <div class="card-body">
-                                    <p class="card-text text-muted" th:text="'Колір: ' + ${element.car_colour}"></p>
+                                    <p class="card-text text-muted" th:text="'Колір: ' + ${element.colour}"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="card border-secondary">
                                 <div class="card-body">
-                                    <p class="card-text text-muted" th:text="'Тип КПП: ' + ${element.car_transmission}"></p>
+                                    <p class="card-text text-muted" th:text="'Тип КПП: ' + ${element.transmission}"></p>
                                 </div>
                             </div>
                         </div>
@@ -79,14 +79,15 @@
                         <div class="col-sm-3">
                             <div class="card border-secondary">
                                 <div class="card-body">
-                                    <p class="card-text text-muted" th:text="'Статус: ' + ${element.car_status}"></p>
+                                    <p class="card-text text-muted" th:text="'Статус: ' + ${element.status}"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="card border-secondary">
                                 <div class="card-body">
-                                    <p class="card-text text-muted" th:text="'Мін. за год.: ' + ${element.min_value_per_hour} + '$'"></p>
+                                    <!--+ ${element.min_value_per_hour} + '$'-->
+                                    <p class="card-text text-muted" th:text="${element.prices.per_hour != null} ? 'Мін. за год.: ' + ${element.prices.per_hour} + '$' : '5$'"></p>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +102,7 @@
                     </div>
                     <div class="col-sm-3 mt-3">
 
-                        <a class="btn btn-outline-dark" th:href="'/car-park/rent/' + ${element.id}">
+                        <a class="btn btn-outline-dark" th:href="'/car-park/details/' + ${element.id} + '/rent'">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist mb-1" viewBox="0 0 16 16">
                                 <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
                                 <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>

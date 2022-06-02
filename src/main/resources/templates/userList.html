@@ -18,13 +18,16 @@
     </div>
 
     <div th:each="element : ${users}" class="card mt-3">
-        <h5 th:text="${element.username}"/>
-        <h6 th:text="${element.password}"/>
-        <h6 th:text="${element.roles}"/>
-        <div>
-            <a th:href="'/user/' + ${element.id}" class="btn btn-outline-primary">edit</a>
-            <a href="/client/" class="btn btn-outline-primary"> Подробиці</a>
+        <div class="card-body">
+            <h4 class="text-primary" th:text="'Користувач № ' + ${element.id}"></h4>
+            <h5 th:text="'Логін ' + ${element.username}"/>
+            <h6 th:text="'Пароль ' + ${element.password}"/>
+            <h6  class="text-danger" th:text="'Ролі: ' + ${element.roles}"/>
         </div>
+        <form th:action="'/user/' + ${element.id} + '/remove'" method="post" class="card-footer">
+            <a th:href="'/user/' + ${element.id}" class="btn btn-outline-success">Редагувати</a>
+            <button th:href="'/user/' + ${element.id} + '/remove'" class="btn btn-outline-danger">Видалити</button>
+        </form>
     </div>
 
     <footer th:insert = "components/footer :: footer"></footer>

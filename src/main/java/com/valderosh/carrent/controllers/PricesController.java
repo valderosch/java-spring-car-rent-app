@@ -40,17 +40,18 @@ public class PricesController {
         return "prices/prices-manage";
     }
 
+    //@RequestParam Cars cars,
     @GetMapping("/prices-manage/add")
-    public String priceAddpage(Cars car_model, Model model) {
-        Iterable<Cars> prices = carsRepository.findAll();
-        model.addAttribute("cars", prices);
+    public String priceAddpage( Model model) {
+        Iterable<Cars> cars = carsRepository.findAll();
+        model.addAttribute("cars", cars);
         return "prices/priceAdd";
     }
 
 
     @PostMapping("/prices-manage/add")
-    public String newPriceAdd(@RequestParam String price_carModel, @RequestParam int per_hour, @RequestParam  int one_day, @RequestParam  int seven_days, @RequestParam int thirty_days, Model model) {
-        Prices newPrice = new Prices(price_carModel, per_hour, one_day, seven_days, thirty_days);
+    public String newPriceAdd(@RequestParam Cars cars, @RequestParam int per_hour, @RequestParam  int one_day, @RequestParam  int seven_days, @RequestParam int thirty_days, Model model) {
+        Prices newPrice = new Prices(cars, per_hour, one_day, seven_days, thirty_days);
         pricesRepository.save(newPrice);
         return "redirect:/prices";
     }
@@ -66,15 +67,15 @@ public class PricesController {
         ArrayList<Prices> res = new ArrayList<>();
         price.ifPresent(res::add);
         model.addAttribute("price", res);
-        Iterable<Cars> prices = carsRepository.findAll();
-        model.addAttribute("cars", prices);
+        Iterable<Cars> cars = carsRepository.findAll();
+        model.addAttribute("cars", cars);
         return "prices/priceEdit";
     }
 
     @PostMapping("/prices-manage/{id}/edit")
-    public String pricesUpdate( @PathVariable(value = "id") long id, @RequestParam String price_carModel, @RequestParam int per_hour, @RequestParam  int one_day, @RequestParam  int seven_days, @RequestParam int thirty_days, Model model){
+    public String pricesUpdate( @PathVariable(value = "id") long id, @RequestParam Cars cars, @RequestParam int per_hour, @RequestParam  int one_day, @RequestParam  int seven_days, @RequestParam int thirty_days, Model model){
         Prices price = pricesRepository.findById(id).orElseThrow();
-        price.setPrice_carModel(price_carModel);
+        price.setCars(cars);
         price.setPer_hour(per_hour);
         price.setOne_day(one_day);
         price.setSeven_days(seven_days);

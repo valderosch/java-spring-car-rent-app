@@ -20,12 +20,12 @@
         <div class="row">
             <div class="col xs-6">
                 <div class="container mt-5 mb-1">
-                    <form th:action="@{/user}" method="post" class="form-outline col-md-8">
-                        <input type="text" name="userId" class="form-control mt-2" th:value="${user.id}" disabled>
+                    <form th:action="${user.id}" method="post" class="form-outline col-md-8">
+                        <input type="text" name="userid" class="form-control mt-2" th:value="${user.id}" disabled>
                         <label>Логін<input type="text" name="username"class="form-control mt-2" th:value="${user.username}"></label>
                         <label>Пароль<input type="password" name="password"class="form-control mt-2" th:value="${user.password}"></label>
-                        <div class="row col-md-6 mt-3" th:each="role : ${roles}">
-                            <label><input type="checkbox" th:checked="${#lists.contains(user.roles, role)}" name="role" th:text="${role}"></label>
+                        <div class="row col-md-6 mt-3" name="form"  th:each="role : ${roles}">
+                            <label><input type="checkbox" th:name="${role}"  th:checked="${#lists.contains(user.roles, role)}" th:text="${role}"></label>
                         </div>
                         <!--            <input type="hidden" th:name="${_csrf}" class="form-control" th:value="${_csrf.token}">-->
                         <button type="submit" class="btn btn-success mt-3">Зберегти зміни</button>

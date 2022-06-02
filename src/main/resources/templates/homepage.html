@@ -9,13 +9,14 @@
 <body>
 <div class="container">
     <header th:insert = "components/header :: header"></header>
-    <section class="pt-4 pt-md-15 mt-35 md-22">
+
+    <section class="page-header-ui-content pt-5 " style="margin-top: 180px;">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-md-5 col-lg-6 order-md-2">
 
                     <!-- Image -->
-                    <img src="https://claraparish.com/wp/wp-content/uploads/2019/12/maps-icon-8223.png" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0 aos-init aos-animate" alt="..." data-aos="fade-up" data-aos-delay="100" height="500">
+                    <img src="https://claraparish.com/wp/wp-content/uploads/2019/12/maps-icon-8223.png" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0 aos-init aos-animate" alt="..." data-aos="fade-up" data-aos-delay="100" height="500" style="margin-left: 50px;">
 
                 </div>
                 <div class="col-12 col-md-7 col-lg-6 order-md-1 aos-init aos-animate" data-aos="fade-up">
@@ -32,8 +33,8 @@
 
                     <!-- Buttons -->
                     <div class="text-center text-md-start">
-                        <a href="/car-park" class="btn btn-primary shadow lift me-1">
-                            Переглянути авто<i class="fe fe-arrow-right d-none d-md-inline ms-3"></i>
+                        <a href="/car-park" class="btn btn-primary">
+                            Переглянути авто
                         </a>
                         <a href="/prices" class="btn btn-primary-soft lift">
                             Ціни
@@ -42,10 +43,11 @@
 
                 </div>
             </div> <!-- / .row -->
-        </div> <!-- / .container -->
+        </div>
     </section>
-    <section class="py-8 py-md-11 border-bottom mt-7">
-        <div class="container">
+    <section class="page-header-ui-content pt-5" style="margin-top: 190px;">
+        <div class="container px-4 px-lg-5">
+            <h2 class="mb-5 text-center">Чому саме ми?</h2>
             <div class="row">
                 <div class="col-12 col-md-4 aos-init aos-animate" data-aos="fade-up">
 
@@ -108,8 +110,9 @@
             </div> <!-- / .row -->
         </div> <!-- / .container -->
     </section>
-    <section class="py-6 py-md-8 border-bottom">
+    <section class="page-header-ui-content pt-5 border-bottom" style="margin-top: 100px;">
         <div class="container">
+            <h2 class="mb-5 text-center">Наші партнери</h2>
             <div class="row align-items-center justify-content-center">
                 <div class="col-6 col-sm-4 col-md-2 mb-4 mb-md-0">
 
@@ -157,7 +160,7 @@
         </div> <!-- / .container -->
     </section>
 
-    <section class="pt-12 pt-md-13 bg-gray-200">
+    <section class="page-header-ui-content pt-5" style="margin-top: 100px;">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-md-5 col-lg-6 order-md-2">
@@ -180,13 +183,14 @@
                     </p>
 
                     <!-- Stats -->
-                    <div class="d-flex">
+                    <div class="d-flex" style="margin-top: 50px;">
                         <div class="pe-5">
                             <h3 class="mb-0">
                                 <span data-countup="{&quot;startVal&quot;: 0}" data-to="100" data-aos="" data-aos-id="countup:in" class="aos-init aos-animate">93</span>%
                             </h3>
                             <p class="text-gray-700 mb-0">
-                                Відгуки
+                                Хороших <br>
+                                Відгуків
                             </p>
                         </div>
                         <div class="border-start border-gray-300"></div>
@@ -214,6 +218,7 @@
             </div> <!-- / .row -->
         </div> <!-- / .container -->
     </section>
+
     <footer th:insert = "components/footer :: footer"></footer>
 </div>
 </body>

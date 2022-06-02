@@ -9,5 +9,5 @@ import org.springframework.data.repository.CrudRepository;
 
 
 public interface PricesRepository extends JpaRepository<Prices, Long> {
-    Cars findByCarModel(String car_model);
+
 }

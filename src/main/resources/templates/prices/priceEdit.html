@@ -14,8 +14,8 @@
         <div class="col xs-6">
             <div th:each="element : ${price}" class="container mt-5 mb-1">
                 <form method="post" class="form-outline col-md-8">
-                    <select class="form-select" name="price_carModel">
-                        <option th:each="element : ${cars}" th:value="${element.car_brand} + ' ' + ${element.car_model}" th:text="${element.car_brand} + ' ' + ${element.car_model}"></option>
+                    <select class="form-select" name="cars">
+                        <option th:each="element : ${cars}" th:value="${element.id}" th:text="${element.brand} + ' ' + ${element.mark}"></option>
                     </select><br>
                     <input type="text" th:value="${element.per_hour}" name="per_hour" placeholder="За годину" class="form-control mt-3"><br>
                     <input type="text" th:value="${element.one_day}" name="one_day" placeholder="За 1 день" class="form-control"><br>

@@ -30,11 +30,11 @@
     <div class="card mb-3" th:each="element : ${cars}">
         <div class="row g-0">
             <div class="col-md-4">
-                <img th:src="${element.car_image}" class="img-fluid rounded-start" alt="...">
+                <img th:src="${element.image}" class="img-fluid rounded-start" alt="...">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h4 class="card-title mb-2" th:text="${element.car_brand} + ' ' + ${element.car_model}"></h4>
+                    <h4 class="card-title mb-2" th:text="${element.brand} + ' ' + ${element.mark}"></h4>
                     <form th:action="'/cars-manage/' + ${element.id} + '/remove'" method="post" class="col-sm-3">
                         <a class="btn btn-success" th:href="'/cars-manage/' + ${element.id} + '/edit'">Редагувати</a>
                         <button type="submit" class="btn btn-danger" th:href="'/cars-manage/' + ${element.id} + '/remove' ">Видалити</button>
@@ -43,21 +43,21 @@
                         <div class="col-sm-3">
                             <div class="card border-secondary">
                                 <div class="card-body">
-                                    <p class="card-text text-muted" th:text="'Потужність: ' + ${element.car_power} + ' к.с.'"></p>
+                                    <p class="card-text text-muted" th:text="'Потужність: ' + ${element.power} + ' к.с.'"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="card border-secondary">
                                 <div class="card-body">
-                                    <p class="card-text text-muted" th:text="'Привід: ' + ${element.car_drive_opt}"></p>
+                                    <p class="card-text text-muted" th:text="'Привід: ' + ${element.drive_opt}"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="card border-secondary">
                                 <div class="card-body">
-                                    <p class="card-text text-muted" th:text="'Паливо: ' + ${element.car_fuel}"></p>
+                                    <p class="card-text text-muted" th:text="'Паливо: ' + ${element.fuel}"></p>
                                 </div>
                             </div>
                         </div>
@@ -67,21 +67,21 @@
                         <div class="col-sm-3">
                             <div class="card border-secondary">
                                 <div class="card-body">
-                                    <p class="card-text text-muted" th:text="'Сегмент: ' + ${element.car_segment}"></p>
+                                    <p class="card-text text-muted" th:text="'Сегмент: ' + ${element.segment}"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="card border-secondary">
                                 <div class="card-body">
-                                    <p class="card-text text-muted" th:text="'Колір: ' + ${element.car_colour}"></p>
+                                    <p class="card-text text-muted" th:text="'Колір: ' + ${element.colour}"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="card border-secondary">
                                 <div class="card-body">
-                                    <p class="card-text text-muted" th:text="'Тип КПП: ' + ${element.car_transmission}"></p>
+                                    <p class="card-text text-muted" th:text="'Тип КПП: ' + ${element.transmission}"></p>
                                 </div>
                             </div>
                         </div>
@@ -92,14 +92,14 @@
                         <div class="col-sm-3">
                             <div class="card border-secondary">
                                 <div class="card-body">
-                                    <p class="card-text text-muted" th:text="'Статус: ' + ${element.car_status}"></p>
+                                    <p class="card-text text-muted" th:text="'Статус: ' + ${element.status}"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="card border-secondary">
                                 <div class="card-body">
-                                    <p class="card-text text-muted" th:text="'Мін. за год.: ' + ${element.min_value_per_hour} + '$'"></p>
+                                    <p class="card-text text-muted">***</p>
                                 </div>
                             </div>
                         </div>

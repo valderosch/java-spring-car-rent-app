@@ -13,31 +13,79 @@ public class Contracts {
     @JoinColumn(name="user_id")
     private User orendator;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "park_id")
-    private ParkLot parklocation;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "park_id")
+//    private ParkLot location;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "car_id")
-    private Cars carModel;
+    private Cars car;
 
-    private String car;
-    private String location;
     private String firstname;
     private String lastname;
     private String phone_number;
     private String passport_data;
     private String age;
     private String driver_exp;
-    private String car_model, time, cost;
+    private String time, cost;
     private Date created_at, expire_date;
 
-    public String getLocation() {
-        return location;
+    //Constructor
+    public Contracts() {
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+
+    //String location, this.car_model = car_model; String car_model, ParkLot location,
+    public Contracts(User orendator, Cars car, String firstname, String lastname, String phone_number, String passport_data,  String age, String driver_exp,  String time, String cost, Date created_at, Date expire_date) {
+        //Relation
+        this.orendator = orendator;
+//        this.location = location;
+        this.car = car;
+        //Static
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.phone_number = phone_number;
+        this.passport_data = passport_data;
+        this.age = age;
+        this.driver_exp = driver_exp;
+        this.time = time;
+        this.cost = cost;
+        this.created_at = created_at;
+        this.expire_date = expire_date;
+
+    }
+
+    //GeTSet Methods
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getOrendator() {
+        return orendator;
+    }
+
+    public void setOrendator(User orendator) {
+        this.orendator = orendator;
+    }
+
+//    public ParkLot getLocation() {
+//        return location;
+//    }
+//
+//    public void setLocation(ParkLot location) {
+//        this.location = location;
+//    }
+
+    public Cars getCar() {
+        return car;
+    }
+
+    public void setCar(Cars car) {
+        this.car = car;
     }
 
     public String getFirstname() {
@@ -88,64 +136,6 @@ public class Contracts {
         this.driver_exp = driver_exp;
     }
 
-
-    public String getCar() {
-        return car;
-    }
-
-    public void setCar(String car) {
-        this.car = car;
-    }
-
-
-
-//    public ParkLot getParklocation() {
-//        return parklocation;
-//    }
-//
-//    public void setParklocation(ParkLot parklocation) {
-//        this.parklocation = parklocation;
-//    }
-
-
-
-
-
-    public Contracts() {
-    }
-
-
-
-    public String getUserName(){
-        return orendator != null ? orendator.getUsername() : "<None>";
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getOrendator() {
-        return orendator;
-    }
-
-    public void setOrendator(User orendator) {
-        this.orendator = orendator;
-    }
-
-    public String getCar_model() {
-        return car_model;
-    }
-
-    public void setCar_model(String car_model) {
-        this.car_model = car_model;
-    }
-
-
-
     public String getTime() {
         return time;
     }
@@ -176,33 +166,5 @@ public class Contracts {
 
     public void setExpire_date(Date expire_date) {
         this.expire_date = expire_date;
-    }
-
-    public ParkLot getParklocation() {
-        return parklocation;
-    }
-
-    public void setParklocation(ParkLot parklocation) {
-        this.parklocation = parklocation;
-    }
-
-    //String location, this.car_model = car_model; String car_model,
-    public Contracts(User orendator, String location, String car, String firstname, String lastname, String phone_number, String passport_data,  String age, String driver_exp,  String time, String cost, Date created_at, Date expire_date) {
-        this.orendator = orendator;
-        this.location = location;
-        this.car = car;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.phone_number = phone_number;
-        this.passport_data = passport_data;
-        this.age = age;
-        this.driver_exp = driver_exp;
-        //User Info
-
-        this.time = time;
-        this.cost = cost;
-        this.created_at = created_at;
-        this.expire_date = expire_date;
-
     }
 }

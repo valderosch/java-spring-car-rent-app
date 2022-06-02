@@ -13,31 +13,15 @@
     <div class="row">
         <div class="col xs-6">
             <div th:each="element : ${parking}" class="container mt-5 mb-1">
-                <form method="post" class="form-outline col-md-8">
+                <form method="post" th:each="park : ${parking}" class="form-outline col-md-8">
                     <div class="mt-3">
                         <h5> Локація:</h5>
-                        <select class="form-select" name="location" required>
-                            <option>Оберіть локацію</option>
-                            <option value="Київ">Київ</option>
-                            <option value="Львів">Львів</option>
-                            <option value="Одесса">Одесса</option>
-                            <option value="Харків">Харків</option>
-                            <option value="Чернівці">Чернівці</option>
-                            <option value="Вінниця">Вінниця</option>
-                            <option value="Тернопіль">Тернопіль</option>
-                            <option value="Дніпро">Дніпро</option>
-                        </select>
+                        <input type="text" name="location" th:value="${park.location}" placeholder="Місцезнаходження у форматі: Район. - Вул. - Буд." class="form-control"><br>
                     </div>
 
                     <div class="mt-3">
-                        <h5> Модель авто:</h5>
-                        <select class="form-select" name="autos">
-                            <option th:each="element : ${cars}" th:value="${element.car_brand} + ' ' + ${element.car_model}" th:text="${element.car_brand} + ' ' + ${element.car_model}"></option>
-                        </select>
-                    </div>
-                    <div class="mt-3">
-                        <h5>Кількість парк місць</h5>
-                        <input type="text" th:value="${element.number_of_cars}" name="number_of_cars" placeholder="Мінімальна кількість міць" class="form-control"><br>
+                        <h5>Контакттний номер телефону</h5>
+                        <input type="text" name="phoneNumber" th:value="${park.phoneNumber}" placeholder="Номер у форматі +380 (**) *** ***" class="form-control"><br>
                     </div>
                     <button type="submit" class="btn btn-success">Зберегти</button>
                 </form>

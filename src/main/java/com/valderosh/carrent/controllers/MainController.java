@@ -1,10 +1,17 @@
 package com.valderosh.carrent.controllers;
+import com.valderosh.carrent.models.Contracts;
+import com.valderosh.carrent.models.ParkLot;
+import com.valderosh.carrent.repository.ParkLotRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
+
+    @Autowired
+    private ParkLotRepository parkLotRepository;
 
     @GetMapping("/")
     public String startpage(Model model) {
@@ -20,7 +27,8 @@ public class MainController {
 
     @GetMapping("/contacts")
     public String contactspage(Model model) {
-        model.addAttribute("title", "Contacts");
+        Iterable<ParkLot> parks = parkLotRepository.findAll();
+        model.addAttribute("parks", parks);
         return "contacts";
     }
 

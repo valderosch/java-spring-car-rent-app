@@ -89,4 +89,6 @@ public class InService {
     public void setDeparture(Date departure) {
         this.departure = departure;
     }
+
+
 }

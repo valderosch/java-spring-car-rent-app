@@ -1,23 +1,20 @@
 package com.valderosh.carrent.models;
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
 
 @Entity
 public class Prices {
-
+    // Id
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
-    @Column(name = "car")
-    private String price_carModel;
-
+    // Relations
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cars_id")
-    private Cars carModel;
+    private Cars cars;
+
+    //integers
+    private int per_hour, one_day, seven_days, thirty_days;
 
     public Long getId() {
         return id;
@@ -27,6 +24,13 @@ public class Prices {
         this.id = id;
     }
 
+    public Cars getCars() {
+        return cars;
+    }
+
+    public void setCars(Cars cars) {
+        this.cars = cars;
+    }
 
     public int getPer_hour() {
         return per_hour;
@@ -60,46 +64,15 @@ public class Prices {
         this.thirty_days = thirty_days;
     }
 
-    public Cars getCar_model() {
-        return  carModel;
-    }
-
-    public void setCar_model(Cars car_model) {
-        this.carModel = car_model;
-    }
-
-    public String getPrice_carModel() {
-        return price_carModel;
-    }
-
-    public void setPrice_carModel(String price_carModel) {
-        this.price_carModel = price_carModel;
-    }
-    //integers
-
-    private int per_hour, one_day, seven_days, thirty_days;
     //Constructor
     public Prices() {
     }
 
-    public Prices(String price_carModel, int per_hour, int one_day, int seven_days, int thirty_days) {
-        this.price_carModel = price_carModel;
-//        this.carModel = car_model;
+    public Prices(Cars cars, int per_hour, int one_day, int seven_days, int thirty_days) {
+        this.cars = cars;
         this.per_hour = per_hour;
         this.one_day = one_day;
         this.seven_days = seven_days;
         this.thirty_days = thirty_days;
-    }
-
-    @Override
-    public String toString() {
-        return "\nPrices{" +
-                "id=" + id +
-                ", carModel=" + carModel +
-                ", per_hour=" + per_hour +
-                ", one_day=" + one_day +
-                ", seven_days=" + seven_days +
-                ", thirty_days=" + thirty_days +
-                '}';
     }
 }

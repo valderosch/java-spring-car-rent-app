@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
@@ -23,7 +23,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-//                .antMatchers( "/contracts/new", "contracts").hasRole("USER")
+//                .antMatchers( "/adminpage").access("hasRole('ROLE_ADMIN')")
+//                .antMatchers( "/contracts/new", "/contracts", "/car-park/*").access("hasRole('ROLE_USER')")
                 .antMatchers("/", "/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()

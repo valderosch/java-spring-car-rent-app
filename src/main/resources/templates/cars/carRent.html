@@ -20,35 +20,38 @@
         <div class="row">
 
         </div>
-            <hr class="hr-dark my-4">
         <div class="row">
             <div class="col xs-6">
-                <div class="container mt-5 mb-2">
-                    <h3 type="text" name="car_model" th:text="${id} + ' ' + ${car_brand} + ' ' + ${car_model}"></h3><br>
-                    <form action="/car-park/rent/" method="post" class="form-outline col-md-15">
-                        <input type="text" name="car" th:value="${car_model}">
+                <div th:each="'carId' : ${car}"  class="container mt-5 mb-2">
+                   <div class="d-flex justify-content-between">
+                       <div class="p2">
+                           <h3 type="text" th:text="'Ви орендуєте: ' + ${carId.brand} + ' ' + ${carId.mark}"></h3><br>
+                       </div>
+                       <div class="p2">
+                           <a href="/car-park" class="btn btn-outline-secondary">Змінити обране авто</a>
+                       </div>
+                   </div>
+                    <form th:action="'/car-park/details/' + ${carId.id} + '/rent'" method="post" class="form-outline col-md-15">
+                        <input type="hidden" name="car" th:value="${carId.id}">
                         <div class="card">
                             <div class="card-body">
+                                <div class="row mt-3">
+                                    <h5> Локація:</h5>
+                                    <div class="col-md-6">
+                                        <input type="text" disabled th:value="${carId.location.location}" name="location" class="form-control">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6 class="card-text">*Обране авто знаходиться за цією адресою</h6><br>
+                                    </div>
+
+                                </div>
+
                                 <div class="mt-3">
                                     <h5> Час оренди:</h5>
                                     <select name="time" class="form-select" required>
-                                        <option value="1day" >1 день</option>
-                                        <option value="7days" >7 днів</option>
-                                        <option value="30days" >30 днів</option>
-                                    </select>
-                                </div>
-                                <div class="mt-3">
-                                    <h5> Локація:</h5>
-                                    <select class="form-select" name="location" required>
-                                        <option>Оберіть локацію</option>
-                                        <option value="Київ">Київ</option>
-                                        <option value="Львів">Львів</option>
-                                        <option value="Одесса">Одесса</option>
-                                        <option value="Харків">Харків</option>
-                                        <option value="Чернівці">Чернівці</option>
-                                        <option value="Вінниця">Вінниця</option>
-                                        <option value="Тернопіль">Тернопіль</option>
-                                        <option value="Дніпро">Дніпро</option>
+                                        <option value="1" >1 день</option>
+                                        <option value="7" >7 днів</option>
+                                        <option value="30" >30 днів</option>
                                     </select>
                                 </div>
                                 <div class="row mt-3">
@@ -94,16 +97,17 @@
                                     </div>
                                 </div>
                                 <div class="mt-3">
-                                    <h5> cost:</h5>
-                                    <select name="cost" class="form-select" required>
-                                        <option value="50" >50</option>
-                                        <option value="250" >250</option>
-                                        <option value="1500" >1500</option>
-                                    </select>
+<!--                                    <h5> cost:</h5>-->
+<!--                                    <select name="cost" class="form-select" required>-->
+<!--                                        <option value="50" >50</option>-->
+<!--                                        <option value="250" >250</option>-->
+<!--                                        <option value="1500" >1500</option>-->
+<!--                                    </select>-->
+                                    <input name="cost" type="hidden" value="50">
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success">Підтрвердити</button>
+                        <button type="submit" class="btn btn-success mt-3">Підтрвердити</button>
 <!--                        <div class="row" th:if="${time == '1day'}">-->
 <!--                                <h1 th:name="${one_day}" th:text="${one_day}"></h1>-->
 <!--                        </div>-->

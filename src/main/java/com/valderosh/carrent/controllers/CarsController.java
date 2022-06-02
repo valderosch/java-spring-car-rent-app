@@ -1,10 +1,8 @@
 package com.valderosh.carrent.controllers;
 import com.valderosh.carrent.models.*;
 import com.valderosh.carrent.repository.CarsRepository;
-import com.valderosh.carrent.repository.ContractsRepository;
-import com.valderosh.carrent.repository.PricesRepository;
+import com.valderosh.carrent.repository.ParkLotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -22,9 +20,8 @@ public class CarsController {
     @Autowired
     private CarsRepository carsRepository;
     @Autowired
-    private PricesRepository pricesRepository;
-    @Autowired
-    private ContractsRepository contractsRepository;
+    private ParkLotRepository parkLotRepository;
+
 
     @GetMapping("/car-park")
     public String carparkpage(@RequestParam(required = false) String filter, Model model) {
@@ -44,15 +41,17 @@ public class CarsController {
 
     @GetMapping("/cars-manage/add")
     public String carsAddpage(Model model) {
+        Iterable<ParkLot> park = parkLotRepository.findAll();
+        model.addAttribute("parking", park);
         return "cars/carsAdd";
     }
 
-
     @PostMapping("/cars-manage/add")
-    public String newCarAdd(@RequestParam String car_image, @RequestParam String car_brand, @RequestParam  String car_model, @RequestParam  String car_segment, @RequestParam String car_colour, @RequestParam String car_power, @RequestParam String car_drive_opt, @RequestParam String car_transmission, @RequestParam String car_fuel, @RequestParam String car_status, @RequestParam String min_value_per_hour, Model model) {
-        Cars newCar = new Cars(car_brand, car_model, car_segment, car_colour, car_power, car_drive_opt, car_status,  car_fuel, car_transmission, car_image, min_value_per_hour );
+    public String newCarAdd(@RequestParam String brand, @RequestParam  String mark, @RequestParam  String segment, @RequestParam String colour, @RequestParam String power, @RequestParam String drive_opt, @RequestParam String transmission, @RequestParam String fuel, @RequestParam String status, @RequestParam String image, @RequestParam String number, @RequestParam(required = false) Prices prices, @RequestParam(value = "location") ParkLot location, Model model) {
+        Cars newCar = new Cars(brand, mark, segment, colour, power, drive_opt, status,  fuel, transmission, image, number, location);
+        Long minId = newCar.getId();
         carsRepository.save(newCar);
-        return "redirect:/car-park";
+        return "redirect:/prices-manage";
     }
 
     @GetMapping("/cars-manage/{id}")
@@ -81,23 +80,28 @@ public class CarsController {
         ArrayList<Cars> res = new ArrayList<>();
         car.ifPresent(res::add);
         model.addAttribute("car", res);
+        Iterable<ParkLot> park = parkLotRepository.findAll();
+        model.addAttribute("parking", park);
         return "cars/carsEdit";
     }
 
     @PostMapping("/cars-manage/{id}/edit")
-    public String staffUpdate( @PathVariable(value = "id") long id, @RequestParam String car_image, @RequestParam String car_brand, @RequestParam  String car_model, @RequestParam  String car_segment, @RequestParam String car_colour, @RequestParam String car_power, @RequestParam String car_drive_opt, @RequestParam String car_transmission, @RequestParam String car_fuel, @RequestParam String car_status, @RequestParam String min_value_per_hour, Model model){
+    public String staffUpdate( @PathVariable(value = "id") long id, @RequestParam String brand, @RequestParam  String mark, @RequestParam  String segment, @RequestParam String colour, @RequestParam String power, @RequestParam String drive_opt, @RequestParam String status, @RequestParam String fuel, @RequestParam String transmission, @RequestParam String image, @RequestParam String number, @RequestParam(required = false) Prices prices, @RequestParam ParkLot location, Model model){
         Cars car = carsRepository.findById(id).orElseThrow();
-        car.setCar_image(car_image);
-        car.setCar_brand(car_brand);
-        car.setCar_model(car_model);
-        car.setCar_segment(car_segment);
-        car.setCar_colour(car_colour);
-        car.setCar_power(car_power);
-        car.setCar_drive_opt(car_drive_opt);
-        car.setCar_transmission(car_transmission);
-        car.setCar_fuel(car_fuel);
-        car.setCar_status(car_status);
-        car.setMin_value_per_hour(min_value_per_hour);
+
+        car.setBrand(brand);
+        car.setMark(mark);
+        car.setSegment(segment);
+        car.setColour(colour);
+        car.setPower(power);
+        car.setDrive_opt(drive_opt);
+        car.setStatus(status);
+        car.setFuel(fuel);
+        car.setTransmission(transmission);
+        car.setImage(image);
+        car.setNumber(number);
+//        car.setPrices(prices);
+        car.setLocation(location);
         carsRepository.save(car);
         return "redirect:/cars-manage";
     }

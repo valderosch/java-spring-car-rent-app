@@ -13,20 +13,20 @@
         <h2 class="p-2">Автопарк</h2>
         <div class="p-2">
             <a href="/" class="btn btn-outline-secondary">< Назад</a>
-            <a href="/contacts" class="btn btn-outline-secondary">Далі ></a>
         </div>
     </div>
 
     <div class="row mt-4">
         <div th:each="element : ${cars}" class="col-sm-3 mt-3">
             <div  class="card border-secondary" style="width: 18rem;">
-                <img th:src="${element.car_image}"class="card-img-top" alt="car">
+                <img th:src="${element.image}"class="card-img-top" alt="car">
                 <div class="card-body">
-                    <h5 class="card-title" th:text="${element.car_brand} + ' ' + ${element.car_model}"></h5>
+                    <h5 class="card-title" th:text="${element.brand} + ' ' + ${element.mark}"></h5>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-muted" th:text="'Статус: ' + ${element.car_status}"></li>
-                    <li class="list-group-item text-muted" th:text="'Мінімальна ціна (год.): ' + ${element.min_value_per_hour}+'$'"></li>
+                    <li class="list-group-item text-muted" th:text="'Статус: ' + ${element.status}"></li>
+                    <!--+ ${element.prices.per_hour} + '$'-->
+                    <li class="list-group-item text-muted" th:text="${element.prices.per_hour != null} ? 'Ціна за годину: ' + ${element.prices.per_hour} + '$' : '5$'"></li>
                 </ul>
                 <div class="card-body">
                     <a th:href="'/car-park/details/' + ${element.id}" class="btn btn-outline-secondary">Детальніше</a>
@@ -39,3 +39,6 @@
 </div>
 </body>
 </html>
+
+
+https://ukravto.ua/files/avto/brand/Peugeot/5008/exterior/peugeot-5008-2016-160-fr.356783.19.jpg

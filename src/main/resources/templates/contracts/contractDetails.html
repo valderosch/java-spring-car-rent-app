@@ -20,18 +20,18 @@
     <div class="card mt-3">
         <div th:each="element : ${contract}" class="card-body">
             <h3 class="card-title mb-2" th:text="'Контракт №' + ${element.id}"></h3>
-            <h6 class="card-subtitle mb-2 text-muted" th:text="'Орендатор: ' + ${element.firstname} + ' ' +  ${ element.lastname}"></h6>
-            <h6 class="card-subtitle mb-2 text-muted" th:text="'Акаунт: ' + ${element.userName}"></h6>
-            <h6 class="card-subtitle mb-2 text-muted" th:text="'Авто: ' + ${element.car}"></h6>
-            <h6 class="card-subtitle mb-2 text-muted" th:text="'Локація: ' + ${element.location}"></h6>
-            <h6 class="card-subtitle mb-2 text-muted" th:text="'Мобільний номер: ' + ${element.phone_number}"></h6>
-            <h6 class="card-subtitle mb-2 text-muted" th:text="'Паспортні дані: ' + ${element.passport_data}"></h6>
-            <h6 class="card-subtitle mb-2 text-muted" th:text="'Вік: ' + ${element.age}"></h6>
-            <h6 class="card-subtitle mb-2 text-muted" th:text="'Стаж водія: ' + ${element.driver_exp}"></h6>
-            <p class="card-text" th:text="'Час: ' + ${element.time}"></p>
-            <p class="card-text" th:text="'Ціна: ' + ${element.cost}"></p>
-            <p class="card-text" th:text="'Створено: ' + ${element.created_at}"></p>
-            <p class="card-text" th:text="'Дійсна До: ' + ${element.expire_date}"></p>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="${element.firstname} ? 'Орендатор: ' + ${element.firstname} + ' ' +  ${ element.lastname} : 'null'"></h6>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="${element.orendator.username} ? 'Акаунт: ' + ${element.orendator.username} : 'null'"></h6>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="${element.car.brand} ? 'Авто: ' + ${element.car.brand}+' '+${element.car.mark} : 'null'"></h6>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="${element.car.location.location} ? 'Локація: ' + ${element.car.location.location} : 'null'"></h6>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="${element.phone_number} ? 'Мобільний номер: ' + ${element.phone_number} : 'null'"></h6>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="${element.passport_data} ? 'Паспортні дані: ' + ${element.passport_data} : 'null'"></h6>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="${element.age} ? 'Вік: ' + ${element.age} : 'null'"></h6>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="${element.driver_exp} ? 'Стаж водія: ' + ${element.driver_exp} : 'null'"></h6>
+            <p class="card-text" th:text="${element.time} ? 'Час: ' + ${element.time} : 'null'"></p>
+            <p class="card-text" th:text="${element.cost} ? 'Ціна: ' + ${element.cost} : 'null'"></p>
+            <p class="card-text" th:text="${element.created_at} ? 'Створено: ' + ${element.created_at} : 'null'"></p>
+            <p class="card-text" th:text="${element.expire_date} ? 'Дійсна До: ' + ${element.expire_date} : 'null'"></p>
             <p class="carf-text-muted">Розповсюдження конфіденційних даних є порушенням закону України та прав людини.</p>
         </div>
     </div>

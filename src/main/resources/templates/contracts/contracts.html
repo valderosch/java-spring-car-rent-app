@@ -10,7 +10,7 @@
 <div class="container">
     <header th:insert = "components/header :: header"></header>
     <div class="d-flex justify-content-between">
-        <h2 class="p-2" th:text="'Орендувати Автo '"></h2>
+        <h2 class="p-2" th:text="'Контракти'"></h2>
         <div class="p-2">
             <a href="/" class="btn btn-outline-secondary">< Назад</a>
         </div>
@@ -18,8 +18,8 @@
     <div th:each="element : ${contracts}" class="card mt-3">
         <div class="card-body">
             <div class="container">
-                <h5 th:text="'Користувач ['+${element.userName}+']'"/>
-                <h6 th:text="'Авто '+${element.car}"/>
+                <h5 th:text="'Користувач ['+${element.orendator.username}+']'"/>
+                <h6 th:text="'Авто '+${element.car.brand}+' '+${element.car.mark}"/>
                 <p th:text="'Дата створення'+${element.created_at}"/>
                 <p th:text="'Дата завершення'+${element.expire_date}"/>
                 <a th:href="'/contracts/' + ${element.id}" class="btn btn-outline-primary"> Подробиці</a>
